@@ -27,6 +27,7 @@ router.get('/login', (req, res) => {
 
 router.get('/callback', async (req, res) => {
     res.send({ message: "hell" });
+
     // const { code } = req.query;
     // console.log(code);
     // try {

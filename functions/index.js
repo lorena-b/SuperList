@@ -1,3 +1,5 @@
+const functions = require("firebase-functions");
+
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
@@ -11,10 +13,13 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 8888;
+// var port = process.env.PORT || 8888;
 
 app.use('/api', api_router);
 app.use('/spotify', spotify_router);
 
-app.listen(port);
-console.log('Magic happens on port ' + port);
+// app.listen(port);
+// console.log('Magic happens on port ' + port);
+
+exports.app = functions.https.onRequest(app);
+

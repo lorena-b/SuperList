@@ -12,12 +12,11 @@ const process = async (req) => {
 
 // GET http://localhost:8080/playlist
 // GET request needs to receive playlist uris
-router.get('/', async function (req, res) {
+router.post('/', async function (req, res) {
     process(req).then(ids => {
-        res.send({});
         // console.log(ids[0], ids[1]);
         axios
-            .get(`http://localhost:8888/spotify/tracks?id=${ids[0]}&id2=${ids[1]}`)
+            .get(`http://localhost:5000/spotify/tracks?id=${ids[0]}&id2=${ids[1]}`)
             .then(res => {
                 // console.log(`statusCode: ${res.statusCode}`);
                 // console.log(res);
