@@ -20,7 +20,6 @@
 
   <!-- Custom styles for this template -->
   <link href="css/one-page-wonder.min.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -49,18 +48,18 @@
         <h1 class="masthead-heading mb-0">Our Big Spotify Project</h1>
 
         <h2 class="masthead-subheading mb-0">Make a playlist with songs in common with your friends!</h2>
-        <a href="http://localhost:5000/spotify/login" class="btn btn-primary btn-xl rounded-pill mt-5">Begin</a>
+        <a href="http://localhost:8888/spotify/login" class="btn btn-primary btn-xl rounded-pill mt-5">Begin</a>
         
         <!-- Text Input -->
         <br/>
         <br/>
         <br/>
-        <form id="playlist-id" onsubmit="send_data()">
+        <form action="http://localhost:5000/api" method="GET" id="playlist-id">
           <div class="form-group">
-            <input  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Playlist ID">
+            <input name="purl" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Playlist ID">
           </div>
           <div class="form-group">
-            <input  class="form-control" id="exampleInputPassword1" placeholder="Enter your friend's playlist ID">
+            <input name= "purl2" class="form-control" id="exampleInputPassword1" placeholder="Enter your friend's playlist ID">
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -87,6 +86,5 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
-</body>
 
 </html>
