@@ -49,18 +49,18 @@
         <h1 class="masthead-heading mb-0">Our Big Spotify Project</h1>
 
         <h2 class="masthead-subheading mb-0">Make a playlist with songs in common with your friends!</h2>
-        <a href="http://localhost:8888/login" class="btn btn-primary btn-xl rounded-pill mt-5">Begin</a>
+        <a href=htt"p://localhost:8888/spotify/callback" class="btn btn-primary btn-xl rounded-pill mt-5">Begin</a>
         
         <!-- Text Input -->
         <br/>
         <br/>
         <br/>
-        <form>
+        <form id="playlist-id" onsubmit="send_data()">
           <div class="form-group">
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Playlist ID">
+            <input  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Playlist ID">
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter your friend's playlist ID">
+            <input  class="form-control" id="exampleInputPassword1" placeholder="Enter your friend's playlist ID">
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -86,7 +86,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+  <script src="script.js"></script>
 </body>
 
 </html>
