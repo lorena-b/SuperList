@@ -25,20 +25,21 @@ router.get('/login', (req, res) => {
     res.redirect(`${html}&show_dialog=true`);
 });
 
-// router.get('/callback', async (req, res) => {
-//     const { code } = req.query;
-//     console.log(code);
-//     try {
-//         var data = await spotifyApi.authorizationCodeGrant(code);
-//         const { access_token, refresh_token } = data.body;
-//         spotifyApi.setAccessToken(access_token);
-//         spotifyApi.setRefreshToken(refresh_token);
+router.get('/callback', async (req, res) => {
+    res.send({ message: "hell" });
+    // const { code } = req.query;
+    // console.log(code);
+    // try {
+    //     var data = await spotifyApi.authorizationCodeGrant(code);
+    //     const { access_token, refresh_token } = data.body;
+    //     spotifyApi.setAccessToken(access_token);
+    //     spotifyApi.setRefreshToken(refresh_token);
 
-//         res.redirect('http://localhost:3001/home');
-//     } catch (err) {
-//         res.redirect('/#/error/invalid token');
-//     }
-// });
+    //     res.redirect('http://localhost:3001/home');
+    // } catch (err) {
+    //     res.redirect('/#/error/invalid token');
+    // }
+});
 
 router.get('/userinfo', async (req, res) => {
     try {
