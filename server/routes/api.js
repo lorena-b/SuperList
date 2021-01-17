@@ -30,7 +30,7 @@ router.get('/', async function (req, res) {
 
 router.post('/callback', function (req, res) {
     console.log(req.query.url);
-    res.sendFile('results.html', { root: '../../client/results.html' });
+    res.sendFile('results.html', { root: './../client/' });
 });
 
 module.exports = router;
