@@ -20,6 +20,17 @@
 
   <!-- Custom styles for this template -->
   <link href="css/one-page-wonder.min.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+        $("form").submit(function () {
+          alert("Successfully created")
+          $.get("http://localhost:5000/api", $("form").serialize(), function (data, status) {
+            alert("Data: " + data + "\nStatus: " + status);
+          })
+        })});
+
+  </script>
 </head>
 
 <body>
@@ -56,7 +67,7 @@
         <br/>
         <br/>
         <br/>
-        <form action="http://localhost:5000/api" method="GET" id="playlist-id">
+        <form id="playlist-id">
           <div class="form-group">
             <input name="purl" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Playlist1 URI">
           </div>
@@ -87,6 +98,4 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
-
 </html>
