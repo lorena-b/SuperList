@@ -1,6 +1,7 @@
 # SuperList!
 
-Can't decide who gets the aux?
-We make a randomized playlist for you!
+Do you and your friends ever have trouble deciding who gets the AUX? 
+Well, we feel the same way and made SuperList to solve this problem for you!
 
+Using deap learning algorithms we craft the perfect playlist for you and your friends!!
 ![til](./img/demo.gif)
