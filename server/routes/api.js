@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const axios = require('axios');
+var injectCode = require('inject-html');
+var http = require("http");
 
 require('dotenv').config();
 
@@ -14,10 +16,9 @@ const process = async (req) => {
 // GET request needs to receive playlist uris
 router.get('/', async function (req, res) {
     process(req).then(ids => {
-        res.send({});
         axios
             .get(`http://localhost:5000/spotify/tracks?id=${ids[0]}&id2=${ids[1]}`)
-            .then(res => {
+            .then(data => {
                 // console.log(`statusCode: ${res.statusCode}`);
                 // console.log(res);
             })
@@ -25,6 +26,11 @@ router.get('/', async function (req, res) {
                 console.error(error);
             });
     });
+});
+
+router.post('/callback', function (req, res) {
+    console.log(req.query.url);
+    res.sendFile('results.html', { root: '../../client/results.html' });
 });
 
 module.exports = router;
