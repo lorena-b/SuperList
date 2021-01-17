@@ -90,7 +90,7 @@ router.get('/tracks', async (req, res) => {
                                             .then(function (data3) {
                                                 console.log('Added tracks to playlist!');
                                                 console.log(`Here is your playlist ~ ${superlist_url}`);
-                                                res.send(`<script>alert("Playlist available at: ${superlist_url}")</script>`)
+                                                res.send(`<script>alert("Playlist available at: ${superlist_url}")</script>`);
                                                 axios.post(`http://localhost:5000/api/callback?url=${superlist_url}`);
 
                                             }, function (err) {
