@@ -40,15 +40,26 @@ router.get('/callback', async (req, res) => {
     }
 });
 
-router.get('/userinfo', async (req, res) => {
-    try {
-        var result = await spotifyApi.getMe();
-        console.log(result.body);
-        res.status(200).send(result.body);
-    } catch (err) {
-        res.status(400).send(err);
+// router.get('/userinfo', async (req, res) => {
+//     try {
+//         var result = await spotifyApi.getMe();
+//         console.log(result.body);
+//         res.status(200).send(result.body);
+//     } catch (err) {
+//         res.status(400).send(err);
+//     }
+// });
+
+const perform = async (data) => {
+    var tracks = data.body.tracks.items;
+    var new_list = [];
+    // console.log(tracks.length);
+    for (i = 0; i < tracks.length; i++) {
+        // console.log(tracks[i].track.uri);
+        new_list.push(tracks[i].track.uri);
     }
-});
+    return new_list;
+};
 
 router.get('/tracks', async (req, res) => {
     try {
@@ -57,10 +68,46 @@ router.get('/tracks', async (req, res) => {
         console.log(`Got it ${id} and ${id2}`);
         spotifyApi.getPlaylist(id)
             .then(function (data) {
-                console.log('Some information about this playlist', data.body);
+                // console.log('Some information about this playlist', data.body.tracks.items);
+                perform(data).then(list => {
+                    spotifyApi.getPlaylist(id2)
+                        .then(function (data2) {
+                            // console.log('Some information about this playlist', data.body.tracks.items);
+                            perform(data2).then(list2 => {
+                                var big_list = list.concat(list2);
+                                big_list = big_list.sort(() => Math.random() - 0.5);
+                                spotifyApi.createPlaylist('SuperList!', { 'description': 'New playlist', 'public': true })
+                                    .then(function (playlist) {
+                                        console.log('Created playlist!');
+                                        // console.log(big_list);
+                                        const superlist_id = playlist.body.id;
+                                        const superlist_url = playlist.body.external_urls.spotify;
+                                        var cut_list = [];
+                                        for (i = 0; i < 50; i++) {
+                                            cut_list.push(big_list[i]);
+                                        }
+                                        spotifyApi.addTracksToPlaylist(superlist_id, cut_list)
+                                            .then(function (data3) {
+                                                console.log('Added tracks to playlist!');
+                                                console.log(`Here is your playlist ~ ${superlist_url}`);
+                                            }, function (err) {
+                                                console.log('Something went wrong!', err);
+                                            });
+                                    }, function (err) {
+                                        console.log('Something went wrong!', err);
+                                    });
+                            });
+                        }, function (err) {
+                            console.log('Something went wrong!', err);
+                        });
+                });
+
             }, function (err) {
                 console.log('Something went wrong!', err);
             });
+
+
+
     } catch (err) {
         res.status(400).send(err);
     }
