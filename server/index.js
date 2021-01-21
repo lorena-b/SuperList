@@ -18,5 +18,3 @@ app.use('/spotify', spotify_router);
 
 app.listen(port);
 console.log('Magic happens on port ' + port);
-
-
